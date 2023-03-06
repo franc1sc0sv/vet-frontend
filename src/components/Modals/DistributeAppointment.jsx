@@ -11,7 +11,8 @@ export const DistributeAppointment = ({ id }) => {
   const { register, handleSubmit } = useForm();
   
   const {data:veterinarios} = useSWR("/veterinarios", obtenerVeterinarios);
-
+ 
+   if(isLoading) return
 
   const succesSubmit = async (data) => {
     mutate("/citas/pendientes", async ()=>{
