@@ -9,8 +9,8 @@ const VetCitas = () => {
     error,
   } = useSWR("/citas/veterinarios", obtenerCitas);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
+  if (isLoading) return <p>Loading...</p>
+  if (error) return <p>Error...</p>
 
   return (
     <>
