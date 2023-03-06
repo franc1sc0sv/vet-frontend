@@ -10,7 +10,7 @@ export const DistributeAppointment = ({ id }) => {
 
   const { register, handleSubmit } = useForm();
   
-  const {data:veterinarios} = useSWR("/veterinarios", obtenerVeterinarios);
+  const {data:veterinarios, isLoading} = useSWR("/veterinarios", obtenerVeterinarios);
  
    if(isLoading) return
 
