@@ -7,12 +7,12 @@ import { asignarCitaVeterinario, obtenerVeterinarios } from '../../api/secy';
 
 
 export const DistributeAppointment = ({ id }) => {
-
   const [showModal, setShowModal] = useState(false)
-  const { register, handleSubmit } = useForm();
-  const {data:veterinarios, error} = useSWR("/veterinarios", obtenerVeterinarios);
 
-  if(error) return <p></p>
+  const { register, handleSubmit } = useForm();
+  
+  const {data:veterinarios} = useSWR("/veterinarios", obtenerVeterinarios);
+
 
   const succesSubmit = async (data) => {
     mutate("/citas/pendientes", async ()=>{
@@ -21,7 +21,9 @@ export const DistributeAppointment = ({ id }) => {
         id
       })
     })
+    setShowModal(false);
   }
+
 
   return (
     <>

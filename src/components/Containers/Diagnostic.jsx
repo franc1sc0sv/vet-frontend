@@ -4,15 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import { PATHS_DUENO } from "../../constants/routes";
 import { IoReturnUpBack } from "react-icons/io5";
 import { obtenerCitasUsuario } from "../../api/vet";
-import { useQuery } from "react-query";
+import useSWR from "swr"
 
 export const DiagnosticContainer = () => {
   const { id } = useParams();
-  const {data: citas, isLoading, isError} = useQuery("get-citas-diagnostico",async () => await obtenerCitasUsuario(id),{
-    retry: false,
-  })
+  const { data: citas, error, isLoading } = useSWR(["/diagnosticos",id], obtenerCitasUsuario);
 
-  if (isError) return <div>failed to load</div>;
+  if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
   return (
